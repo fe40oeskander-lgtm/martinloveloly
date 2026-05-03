@@ -14,7 +14,7 @@ body{
   overflow-x:hidden;
 }
 
-/* ===== BACKGROUND HEARTS ===== */
+/* ===== HEARTS ===== */
 #hearts{
   position:fixed;
   width:100%;
@@ -121,16 +121,6 @@ section{
   padding:20px;
   margin:10px;
   border-radius:15px;
-  transition:0.3s;
-}
-
-.card:hover{
-  transform:scale(1.05);
-  background:rgba(255,255,255,0.2);
-}
-
-h2{
-  margin-bottom:20px;
 }
 
 /* images */
@@ -139,9 +129,9 @@ h2{
   border-radius:15px;
 }
 
-/* engagement bigger */
+/* engagement big */
 .eng{
-  font-size:24px;
+  font-size:26px;
   line-height:2;
 }
 
@@ -165,14 +155,14 @@ textarea{
 <!-- HEARTS BACKGROUND -->
 <div id="hearts"></div>
 
-<!-- MUSIC -->
+<!-- MUSIC (FIXED NAME) -->
 <audio autoplay loop>
-  <source src="music/Yunis.mp3" type="audio/mpeg">
+  <source src="./music/Yunis.mp3" type="audio/mpeg">
 </audio>
 
 <!-- LANDING -->
 <div id="landing">
-  <img src="photos/1.jpg">
+  <img src="./photos/1.jpg">
   <h1>Martin & Viola ❤️</h1>
   <p>Together Forever</p>
   <button onclick="openSecret()">Enter Our Story ❤️</button>
@@ -193,18 +183,18 @@ textarea{
   <h2>💖 Memories</h2>
 
   <div class="card">
-    <img src="photos/1.jpg">
+    <img src="./photos/1.jpg">
     <h3>First day I loved you – 26/3/2023</h3>
   </div>
 
   <div class="card">
-    <img src="photos/2.jpg">
-    <h3>Our beautiful moments ❤️</h3>
+    <img src="./photos/2.jpg">
+    <h3>Beautiful moments together ❤️</h3>
   </div>
 
   <div class="card">
-    <img src="photos/3.jpg">
-    <h3>Forever together 💫</h3>
+    <img src="./photos/3.jpg">
+    <h3>Forever memories 💫</h3>
   </div>
 </section>
 
@@ -236,13 +226,12 @@ textarea{
 
 <script>
 
-/* ===== OPEN SECRET ===== */
+/* ===== SECRET ===== */
 function openSecret(){
   document.getElementById("landing").style.display="none";
   document.getElementById("secret").style.display="flex";
 }
 
-/* ===== CODE ===== */
 function checkCode(){
   const code=document.getElementById("code").value;
   if(code==="martinloveloly"){
@@ -285,13 +274,15 @@ function render(){
 
 render();
 
-/* ===== HEARTS ===== */
+/* ===== HEARTS (FIXED PATH) ===== */
 const container=document.getElementById("hearts");
 
 setInterval(()=>{
   const img=document.createElement("img");
   img.className="heart-img";
-  img.src="photos/4.png";
+
+  // PNG HEART FIXED
+  img.src="./photos/4.png";
 
   img.style.left=Math.random()*100+"vw";
   img.style.width=(40+Math.random()*90)+"px";
