@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Martin & Viola ❤️</title>
+
+<style>
+body{
+  margin:0;
+  font-family:Segoe UI;
+  background: radial-gradient(circle,#0f172a,#1a1a2e,#ff4d6d);
+  color:white;
+  overflow-x:hidden;
+}
+
+/* ===== BACKGROUND HEARTS ===== */
+#hearts{
+  position:fixed;
+  width:100%;
+  height:100%;
+  top:0;
+  left:0;
+  pointer-events:none;
+  z-index:0;
+}
+
+.heart-img{
+  position:absolute;
+  bottom:-80px;
+  width:60px;
+  height:60px;
+  object-fit:cover;
+  animation:floatUp linear forwards;
+  filter:drop-shadow(0 0 15px #ff4d6d);
+}
+
+@keyframes floatUp{
+  0%{transform:translateY(0) scale(0.5);opacity:0;}
+  10%{opacity:1;}
+  100%{transform:translateY(-120vh) scale(1.3);opacity:0;}
+}
+
+/* ===== LANDING ===== */
+#landing{
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  position:relative;
+  z-index:2;
+  animation:fadeIn 2s ease;
+}
+
+@keyframes fadeIn{
+  from{opacity:0;transform:scale(1.1);}
+  to{opacity:1;transform:scale(1);}
+}
+
+#landing img{
+  width:180px;
+  height:180px;
+  border-radius:50%;
+  border:4px solid white;
+  object-fit:cover;
+  box-shadow:0 0 25px rgba(255,255,255,0.4);
+}
+
+button{
+  margin-top:15px;
+  padding:12px 25px;
+  border:none;
+  border-radius:30px;
+  background:#ff4d6d;
+  color:white;
+  font-size:18px;
+  cursor:pointer;
+  animation:beat 1s infinite;
+}
+
+@keyframes beat{
+  0%{transform:scale(1);}
+  50%{transform:scale(1.1);}
+  100%{transform:scale(1);}
+}
+
+/* ===== SECRET ===== */
+#secret{
+  display:none;
+  height:100vh;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  position:relative;
+  z-index:2;
+}
+
+input{
+  padding:10px;
+  border-radius:10px;
+  border:none;
+  text-align:center;
+}
+
+/* ===== CONTENT ===== */
+#content{
+  display:none;
+  position:relative;
+  z-index:2;
+}
+
+section{
+  padding:70px 20px;
+  text-align:center;
+}
+
+.card{
+  background:rgba(255,255,255,0.1);
+  padding:20px;
+  margin:10px;
+  border-radius:15px;
+  transition:0.3s;
+}
+
+.card:hover{
+  transform:scale(1.05);
+  background:rgba(255,255,255,0.2);
+}
+
+h2{
+  margin-bottom:20px;
+}
+
+/* images */
+.card img{
+  width:100%;
+  border-radius:15px;
+}
+
+/* engagement bigger */
+.eng{
+  font-size:24px;
+  line-height:2;
+}
+
+/* messages */
+textarea{
+  width:100%;
+  padding:10px;
+  border-radius:10px;
+  margin-top:10px;
+}
+
+/* messages list */
+.msg{
+  margin-top:15px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEARTS BACKGROUND -->
+<div id="hearts"></div>
+
+<!-- MUSIC -->
+<audio autoplay loop>
+  <source src="music/Yunis.mp3" type="audio/mpeg">
+</audio>
+
+<!-- LANDING -->
+<div id="landing">
+  <img src="photos/1.jpg">
+  <h1>Martin & Viola ❤️</h1>
+  <p>Together Forever</p>
+  <button onclick="openSecret()">Enter Our Story ❤️</button>
+</div>
+
+<!-- SECRET -->
+<div id="secret">
+  <h2>🔐 Secret Code</h2>
+  <input id="code" placeholder="Enter code">
+  <button onclick="checkCode()">Unlock 💖</button>
+</div>
+
+<!-- CONTENT -->
+<div id="content">
+
+<!-- MEMORIES -->
+<section>
+  <h2>💖 Memories</h2>
+
+  <div class="card">
+    <img src="photos/1.jpg">
+    <h3>First day I loved you – 26/3/2023</h3>
+  </div>
+
+  <div class="card">
+    <img src="photos/2.jpg">
+    <h3>Our beautiful moments ❤️</h3>
+  </div>
+
+  <div class="card">
+    <img src="photos/3.jpg">
+    <h3>Forever together 💫</h3>
+  </div>
+</section>
+
+<!-- ENGAGEMENT -->
+<section>
+  <h2>💍 Engagement</h2>
+
+  <div class="card eng">
+    📅 26/03/2027<br>
+    ⛪ Saint Mark Church<br>
+    ⏰ 7:00 PM
+  </div>
+</section>
+
+<!-- MESSAGE -->
+<section>
+  <h2>💌 Messages</h2>
+
+  <div class="card">
+    <input id="name" placeholder="Your Name">
+    <textarea id="msg" placeholder="Your Message"></textarea>
+    <button onclick="saveMsg()">Save ❤️</button>
+  </div>
+
+  <div id="messagesList"></div>
+</section>
+
+</div>
+
+<script>
+
+/* ===== OPEN SECRET ===== */
+function openSecret(){
+  document.getElementById("landing").style.display="none";
+  document.getElementById("secret").style.display="flex";
+}
+
+/* ===== CODE ===== */
+function checkCode(){
+  const code=document.getElementById("code").value;
+  if(code==="martinloveloly"){
+    document.getElementById("secret").style.display="none";
+    document.getElementById("content").style.display="block";
+  }else{
+    alert("Wrong Code ❌");
+  }
+}
+
+/* ===== MESSAGES ===== */
+let messages = JSON.parse(localStorage.getItem("msgs")) || [];
+
+function saveMsg(){
+  const name=document.getElementById("name").value;
+  const msg=document.getElementById("msg").value;
+
+  if(!name || !msg) return;
+
+  messages.unshift({name,msg});
+  localStorage.setItem("msgs",JSON.stringify(messages));
+
+  document.getElementById("name").value="";
+  document.getElementById("msg").value="";
+
+  render();
+}
+
+function render(){
+  const box=document.getElementById("messagesList");
+  box.innerHTML="";
+
+  messages.forEach(m=>{
+    const div=document.createElement("div");
+    div.className="card msg";
+    div.innerHTML=`<h4>❤️ ${m.name}</h4><p>${m.msg}</p>`;
+    box.appendChild(div);
+  });
+}
+
+render();
+
+/* ===== HEARTS ===== */
+const container=document.getElementById("hearts");
+
+setInterval(()=>{
+  const img=document.createElement("img");
+  img.className="heart-img";
+  img.src="photos/4.png";
+
+  img.style.left=Math.random()*100+"vw";
+  img.style.width=(40+Math.random()*90)+"px";
+  img.style.height=img.style.width;
+  img.style.animationDuration=(5+Math.random()*4)+"s";
+
+  container.appendChild(img);
+  setTimeout(()=>img.remove(),9000);
+},200);
+
+</script>
+
+</body>
+</html>
